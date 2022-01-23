@@ -81,14 +81,14 @@ for t2
 
 install git lfs follow [here](https://github.com/git-lfs/git-lfs).
 ```bash
-git lfs clone https://github.com/miziha-zp/XMReC-WSDMCup-biuG.git
+git clone https://github.com/miziha-zp/XMReC-WSDMCup-biuG.git
 ```
 ###  install python package.
 ```bash
 pip install requirements.txt
 ```
 ### quick run
-Due to "great size of the project", we highly recommend you to use our dumped feature. For the total run, follow [run from the start](#run-from-the-start)
+Due to "great size of the project", we highly recommend you to use our dumped features(which is in the attachment to email). For the total run, follow [run from the start](#run-from-the-start)
 ```bash
 cd learn2rank
 python 
