@@ -333,13 +333,13 @@ class idsMap:
 def create_global_graph(market_list=['s1', 's2', 's3', 't1', 't2'], onlytest=False):
     ans = pd.DataFrame()
     for market in market_list:
-        t_train = pd.read_csv(os.path.join('../../../input/{}/'.format(market), 'train.tsv'), sep='\t')
+        t_train = pd.read_csv(os.path.join('../../input/{}/'.format(market), 'train.tsv'), sep='\t')
         ans = pd.concat([ans, t_train], axis=0)
-        t_train = pd.read_csv(os.path.join('../../../input/{}/'.format(market), 'train_5core.tsv'), sep='\t')
+        t_train = pd.read_csv(os.path.join('../../input/{}/'.format(market), 'train_5core.tsv'), sep='\t')
         ans = pd.concat([ans, t_train], axis=0)
         world.cprint(f'data shape:{ans.shape}')
         if onlytest:
-            t_train = pd.read_csv(os.path.join('../../../input/{}/'.format(market), 'valid_qrel.tsv'), sep='\t')
+            t_train = pd.read_csv(os.path.join('../../input/{}/'.format(market), 'valid_qrel.tsv'), sep='\t')
             ans = pd.concat([ans, t_train], axis=0)
             world.cprint(f'===>after add valid data shape:{ans.shape}')
 
