@@ -172,18 +172,7 @@ pip install -r requirements.txt
 
 ### Start the experiments
 
-Due to **great size of the project**, we provide the following two methods:
-#### Just reproduce the learn2rank stage (Recommending) 
-Due to great size of the project, we highly recommend you to use our dumped features(which is in the attachment of the email). you can also find the features [here](https://pan.baidu.com/s/1LcW-8pLvYHylDs_-XjDeCA)with an password `60ai`.
-first put the dumped features(`final_valid.pickle` and `final_test.pickle`) in the `learn2rank` folder, then run the script below.
-```bash
-cd learn2rank
-python xm_lgb.py 
-bash offline_run.sh
-```
-#### Run from scratch
-For the total run. 
-1. Put the dataset in the following structure:
+Put the dataset in the following structure:
 
 ```bash
 ├── GFCF
@@ -208,6 +197,18 @@ For the total run.
        ├── test_run.tsv
        ├── ...
 ```
+
+Due to **great size of the project**, we provide the following two methods:
+#### Just reproduce the learn2rank stage (Recommending) 
+Due to great size of the project, we highly recommend you to use our dumped features(which is in the attachment of the email). you can also find the features [here](https://pan.baidu.com/s/1LcW-8pLvYHylDs_-XjDeCA) with an password `60ai`.
+first put the dumped features(`final_valid.pickle` and `final_test.pickle`) in the `learn2rank` folder, then run the script below.
+```bash
+cd learn2rank
+python xm_lgb.py 
+bash offline_run.sh
+```
+#### Run from scratch
+For the total run. 
 if you want to get scores from every method mentioned above, motify `python xm_lgb.py` in `run_all.sh` to `python xm_lgb.py --offline`, then you will get the scores table.
 your will find the result in `learn2rank/submit1.zip`.
 
