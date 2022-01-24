@@ -1,3 +1,4 @@
+cython
 catboost==0.26
 cppimport==21.3.7
 Cython==0.29.23
