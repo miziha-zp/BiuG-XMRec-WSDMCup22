@@ -44,7 +44,7 @@ in short, try to using the source market data improve the recommendation in targ
 nDCG@10 follow the protocol mentioned in [1], recall top10 items from 100 candidate for both target market t1 and t2.
 
 ## Solution
-We introduce our solution using the three sections below. We first benchmark collaborative filtering method on a single market, including a lot of the classic approaches as well as the advanced approaches. Then we try to fit some of these approaches to a cross-market use. For greater performance, we use learn2rank method to fusion all the scores mentioned.
+We introduce our solution using the three sections below. We first benchmark collaborative filtering method on a single market, including a lot of the classic approaches as well as the advanced approaches. Then we try to fit some of these approaches to a cross-market use. For greater performance, we use learn2rank method to fuse all the scores mentioned.
 
 ### Benchmarking collaborative filtering method on single market
 In the section, we introduce benchmark collaborative filtering methods on a single market, including a lot of the classic approaches as well as the advanced approaches. Thanks for the open-source code from authors or other good guys.
