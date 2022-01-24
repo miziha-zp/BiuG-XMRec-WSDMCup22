@@ -5,10 +5,22 @@
   - [Evaluation](#evaluation)
   - [solution](#solution)
     - [benchmarking collaborative filtering method on single market](#benchmarking-collaborative-filtering-method-on-single-market)
+      - [LightGCN(SIGIR20)[2]](#lightgcnsigir202)
+      - [Matrix Factorization](#matrix-factorization)
+      - [UltraGCN(CIKM21)[4]](#ultragcncikm214)
+      - [GFCF(CIKM21)[7]](#gfcfcikm217)
+      - [Open-Match-Benchmark](#open-match-benchmark)
+      - [itemCF[8]](#itemcf8)
+      - [userCF](#usercf)
+      - [Popularity](#popularity)
     - [Bringing in useful information from the source market](#bringing-in-useful-information-from-the-source-market)
+      - [xm-itemCF](#xm-itemcf)
+      - [xm-userCF](#xm-usercf)
+      - [xm-Popularity](#xm-popularity)
     - [learn to rank](#learn-to-rank)
-      - [popularity features](#popularity-features)
-      - [history insection statistic](#history-insection-statistic)
+    - [details](#details)
+      - [concat train and train5core](#concat-train-and-train5core)
+      - [add validation data to train for test scoring.](#add-validation-data-to-train-for-test-scoring)
   - [run our code](#run-our-code)
     - [clone the repository](#clone-the-repository)
     - [install python package.](#install-python-package)
@@ -32,12 +44,12 @@ we introduce our solution using the three below. We first benchmark collaborativ
 ### benchmarking collaborative filtering method on single market
 in the section, we benchmark collaborative filtering method on single market, including a lots of the classic approaches as well as the advanced approaches. Thanks for the open source code from authors or other good guys.
 
-- LightGCN(SIGIR20)[2]
-- 
+#### LightGCN(SIGIR20)[2]
+
    LightGCN just remove the feature transformation and nonlinear activation in NGCF(Neural Graph Collaborative Filtering[3]), and get great improvement. We use the [pytorch implement](https://github.com/gusye1234/pytorch-light-gcn), and turn learning rate from [1e-3, 1e-4, 1e-2], l2_reg in [1e-2, 6e-5, 3e-4]and latent-dim from [64, 1024, 2048, 3072], layer in [2, 3, 4, 5, 6]. We found that the three hyperparameter significantly impact on performance. In our expriment, we set layer=4, learning_rate=1e-3, latent-dim=2048, l2_reg=6e-5 with the batchsize=8192, and then get the best single model performance(**NDCG@10=698 for t1, and NDCG@10=604 for t2, both of the result are validation result**).  For better performance, we blending five models with different initial seeds.
    **lightgcn is the best single model in our solution.**
 
-- Matrix Factorization
+#### Matrix Factorization
   
   Different from the bias awared MF mentioned in [6], we adapt a standard MF. and turn the hyperparameter like lightgcn. In our expriment, we set learning_rate=1e-3, latent-dim=2048, l2_reg=5e-3 with the batchsize=8192, and then get the best single model performance(NDCG@10=686 for t1, and NDCG@10=591 for t2, both of the result are validation result). For better performance, we blending five models with different initial seeds.
 
@@ -45,19 +57,19 @@ in the section, we benchmark collaborative filtering method on single market, in
 
   you can find more detail in [LightGCN-PyTorch-master/code](LightGCN-PyTorch-master/code), magic hyperparameter is hiden in `run_lgcn.sh` and `run_mf.sh`.
 
-- UltraGCN(CIKM21)[4]
+#### UltraGCN(CIKM21)[4]
 
   UltraGCN is ultra-simplified formulation of GCNs, which skips infinite layers of message passing for efficient recommendation. in the paper, the performance is amazing. But this too much hyper-parameter is a big problem for us.
   We turn the hyper-parameter that contained in mf, and find hard to get better result than mf.
-- GFCF(CIKM21)[7]
+#### GFCF(CIKM21)[7]
 
   [7]present a simple and computationally efficient method, named GF-CF. GFCF develop a generalgraph filter-based framework for CF, built upon the closed-form solution. we run the code from [author](https://github.com/yshenaw/GF_CF). The result is worse than mf.
 
-- Open-Match-Benchmark
+#### Open-Match-Benchmark
 
   We run the four methods(EASE_r, ItemKNN, SLIM, Item2Vec) is from the collection **[Open-Match-Benchmark](https://openbenchmark.github.io/BARS/)**[6], many thanks for their work. For more detail, feel free to visit their [websit](https://openbenchmark.github.io/BARS/)
 
-- itemCF[8]
+#### itemCF[8]
 
   ItemCF is classic collaborative filtering method, which recommend similar items similar to those purchased by the user.  In this competition, we adapt itemCF to a ranking use. For a pair(user, item) to be scored, we simply calculate the similarity between the item and items which the use purchased before,  then get a similarity sequence. We use the some the statistics for this sequence as the final score.
 
@@ -70,12 +82,27 @@ in the section, we benchmark collaborative filtering method on single market, in
   - max, mean, std, median, length
   - 5%, 95% percentage
 
-- userCF
+#### userCF
   
   Similar to ItemCF, UserCF recommend items purchased by the similar users to the user.  In this competition, we alse adapt UserCF to a ranking use. For a pair(user, item) to be scored, we simply calculate the similarity between the user and users whose purchased this item before,  then get a similarity sequence. We use the some the statistics for this sequence as the final score. The similarity and statistics is similar to itemCF.
+
+#### Popularity
   
+  Popular items are often popular, we calulation the click numbers of every item as the feature to represent the popularity of items.
+
+**notice** The data use in this section, is only the target market data.
+
+
 ### Bringing in useful information from the source market
 
+To alleviate the problem of sparse data in target markets, we make some attempts.
+
+#### xm-itemCF
+We simply add source market data to item similarity calculation, which means that when the users in the source market whose purchase the item are considered. After add source market data some scores are improved Obviously.
+#### xm-userCF
+Similar to xm-itemCF, we alse add users whose are from source market to purchase-items sequence.
+#### xm-Popularity
+ We calulation the click numbers of every item **in every market** as the feature to represent the popularity of items in different market.
 
 ### learn to rank
  
@@ -89,8 +116,11 @@ for t1
 for t2
 |method|ndcg@10validation|hit@10validation|
 
-#### popularity features
-#### history insection statistic
+### details
+
+#### concat train and train5core
+
+#### add validation data to train for test scoring.
 
 ## run our code  
 
