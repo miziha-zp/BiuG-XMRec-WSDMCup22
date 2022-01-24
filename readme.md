@@ -21,6 +21,7 @@
     - [details](#details)
       - [concat train and train5core](#concat-train-and-train5core)
       - [add validation data to train for test scoring.](#add-validation-data-to-train-for-test-scoring)
+      - [feature selection](#feature-selection)
   - [run our code](#run-our-code)
     - [Clone the repository](#clone-the-repository)
     - [Install python package](#install-python-package)
@@ -153,7 +154,8 @@ for t1|t2
 We just concat train and train5core data and remove the duplicate sections as our train data.
 #### add validation data to train for test scoring.
 When score for test data, we add add validation groudtruth data to train.
-
+#### feature selection
+We adapt a feature selection technique before ranking, which using lightgbm to build a classifier, and get the feature importance(split, using the lightgbm API), we filter out features whose importance < 10.
 ## run our code  
 ### Clone the repository
 
