@@ -97,8 +97,8 @@ def solve(data_dir, reload, offline):
         joblib.dump(lgb_test_data, test_pkl_path)
     else:
         a = 2
-        lgb_valid_data = joblib.load(valid_pkl_path)
-        lgb_test_data = joblib.load(test_pkl_path)
+        # lgb_valid_data = joblib.load(valid_pkl_path)
+        # lgb_test_data = joblib.load(test_pkl_path)
     # del lgb_test_data['u2iiou_length'], lgb_valid_data['u2iiou_length']
     # print(lgb_valid_data['i2ucosine_max'].head(500))
     # merge train train5core stats features
@@ -126,8 +126,8 @@ def solve(data_dir, reload, offline):
     lgb_valid_data, lgb_test_data = load_lgbide(data_dir, lgb_valid_data, lgb_test_data)
     # gfcf
     lgb_valid_data, lgb_test_data = load_gfcf(data_dir, lgb_valid_data, lgb_test_data)
-    lgb_valid_data['sum_mf_lgcn'] = 0.7 * lgb_valid_data['lgcn_score_score'] + 0.3 * lgb_valid_data['mf_score_score']
-    lgb_test_data['sum_mf_lgcn'] = 0.7 * lgb_test_data['lgcn_score_score'] + 0.3 * lgb_test_data['mf_score_score']
+    # lgb_valid_data['sum_mf_lgcn'] = 0.7 * lgb_valid_data['lgcn_score_score'] + 0.3 * lgb_valid_data['mf_score_score']
+    # lgb_test_data['sum_mf_lgcn'] = 0.7 * lgb_test_data['lgcn_score_score'] + 0.3 * lgb_test_data['mf_score_score']
     
     # for fea in ["u2iiou_max", "itemKNN2_scores", "concat_s1_u2iiou_max"]:
     #     lgb_valid_data[f'sum_lgcn_{fea}'] = 0.7 * lgb_valid_data['lgcn_score_score']+ 0.3 * lgb_valid_data[fea]
@@ -156,8 +156,9 @@ def main():
     
     args = parser.parse_args()
     print(args)
-    valid_out2, test_out2 = solve(args.t2_dir, args.reload, args.offline)
     valid_out1, test_out1 = solve(args.t1_dir, args.reload, args.offline)
+    valid_out2, test_out2 = solve(args.t2_dir, args.reload, args.offline)
+
     valid_out2['m'], test_out2['m'] = 2, 2
     valid_out1['m'], test_out1['m'] = 1, 1
 

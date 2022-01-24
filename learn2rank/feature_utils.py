@@ -61,7 +61,7 @@ def load_itemEASE_r(data_dir, lgb_valid_data, lgb_test_data):
     return lgb_valid_data, lgb_test_data   
 
 def load_itemKNN(data_dir, lgb_valid_data, lgb_test_data):
-    for k in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20]:
+    for k in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 20]:#  
         lgb_valid_data, lgb_test_data = load_Recall_score_split(data_dir, lgb_valid_data, lgb_test_data, recallway='itemKNN{}_scores_score'.format(k))
 
     lgb_valid_data = add_utils(lgb_valid_data)

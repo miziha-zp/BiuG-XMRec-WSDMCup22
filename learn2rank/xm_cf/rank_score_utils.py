@@ -89,7 +89,7 @@ def get_stats(data, col_name, prefix):
         data[prefix+'_'+stat_n] = data[col_name].apply(stat_f)
     # data[prefix+'_'+"percentile_90"] = data[col_name].apply(lambda x: np.percentile(x, 90))
     data[prefix+'_'+"percentile_95"] = data[col_name].apply(lambda x: np.percentile(x, 95))
-    # data[prefix+'_'+"percentile_80"] = data[col_name].apply(lambda x: np.percentile(x, 80))
+    data[prefix+'_'+"percentile_80"] = data[col_name].apply(lambda x: np.percentile(x, 80))
     data[prefix+'_'+"percentile_5"] = data[col_name].apply(lambda x: np.percentile(x, 5))
     # data[prefix+'_'+"percentile_25"] = data[col_name].apply(lambda x: np.percentile(x, 25))
     # data[prefix+'_'+"percentile_55"] = data[col_name].apply(lambda x: np.percentile(x, 55))
