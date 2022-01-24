@@ -57,8 +57,26 @@ in the section, we benchmark collaborative filtering method on single market, in
 
   We run the four methods(EASE_r, ItemKNN, SLIM, Item2Vec) is from the collection **[Open-Match-Benchmark](https://openbenchmark.github.io/BARS/)**[6], many thanks for their work. For more detail, feel free to visit their [websit](https://openbenchmark.github.io/BARS/)
 
+- itemCF[8]
 
+  ItemCF is classic collaborative filtering method, which recommend similar items similar to those purchased by the user.  In this competition, we adapt itemCF to a ranking use. For a pair(user, item) to be scored, we simply calculate the similarity between the item and items which the use purchased before,  then get a similarity sequence. We use the some the statistics for this sequence as the final score.
+
+  For the similarity calculation between the two items, different ways are adapted by us. 
+  - IOU(intersection of union between the users sequence of two items.)
+  - cosine(cosine similarity between the users sequence of two items.)
+  - cosine_item2vec(cosine similarity between the items vectors(which got from the item2vec[9]))
+
+  For the statistics for this similarity sequence, different ways are adapted by us.
+  - 
+
+- userCF
+
+  
 ### Bringing in useful information from the source market
+
+
+### learn to rank
+ 
 
 an overall benchmark is below.
 
@@ -69,9 +87,6 @@ for t1
 for t2
 |method|ndcg@10validation|hit@10validation|
 
-### learn to rank
- 
-
 #### popularity features
 #### history insection statistic
 
@@ -79,7 +94,6 @@ for t2
 
 ### clone the repository
 
-install git lfs follow [here](https://github.com/git-lfs/git-lfs).
 ```bash
 git clone https://github.com/miziha-zp/XMReC-WSDMCup-biuG.git
 ```
@@ -130,4 +144,8 @@ Thank you to everyone for your efforts。
 
 [6] Mao et al. SimpleX: A Simple and Strong Baseline for Collaborative Filtering
 
-[7] Shen et al.How Powerful is Graph Convolution for Recommendation?
+[7] Shen et al. How Powerful is Graph Convolution for Recommendation?
+
+[8] Linden et al. Recommendations Item-to-Item Collaborative Filtering
+
+[9] Barken et al. Item2Vec: Neural Item Embedding for Collaborative Filtering
