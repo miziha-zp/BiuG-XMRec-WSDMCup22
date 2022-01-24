@@ -67,10 +67,12 @@ in the section, we benchmark collaborative filtering method on single market, in
   - cosine_item2vec(cosine similarity between the items vectors(which got from the item2vec[9]))
 
   For the statistics for this similarity sequence, different ways are adapted by us.
-  - 
+  - max, mean, std, median, length
+  - 5%, 95% percentage
 
 - userCF
-
+  
+  Similar to ItemCF, UserCF recommend items purchased by the similar users to the user.  In this competition, we alse adapt UserCF to a ranking use. For a pair(user, item) to be scored, we simply calculate the similarity between the user and users whose purchased this item before,  then get a similarity sequence. We use the some the statistics for this sequence as the final score. The similarity and statistics is similar to itemCF.
   
 ### Bringing in useful information from the source market
 

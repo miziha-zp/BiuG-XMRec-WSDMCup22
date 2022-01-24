@@ -81,8 +81,8 @@ def get_stats(data, col_name, prefix):
     
     # numpy based function
 
-    stat_funtion = [np.max, np.mean, len]
-    stat_name = ['max', 'mean', 'length']
+    stat_funtion = [np.max, np.mean, len, np.std]
+    stat_name = ['max', 'mean', 'length', 'std']
 
     for stat_n, stat_f in zip(stat_name, stat_funtion):
         print('processing ====> ', prefix, stat_n)
