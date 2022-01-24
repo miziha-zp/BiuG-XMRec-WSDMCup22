@@ -1,0 +1,16 @@
+*.zip
+*.pkl
+*.txt
+*.log
+*.tsv
+*.pyc
+*.pyx
+*.tar
+*.pt
+LightGCN-PyTorch-master/code/runs/
+LightGCN-PyTorch-master/data/t2/s_pre_adj_mat.npz
+*_mat
+*.npz
+*.pickle
+*.so
+ultraGCN/runs/

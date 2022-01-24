@@ -156,8 +156,8 @@ def main():
     
     args = parser.parse_args()
     print(args)
-    valid_out1, test_out1 = solve(args.t1_dir, args.reload, args.offline)
     valid_out2, test_out2 = solve(args.t2_dir, args.reload, args.offline)
+    valid_out1, test_out1 = solve(args.t1_dir, args.reload, args.offline)
     valid_out2['m'], test_out2['m'] = 2, 2
     valid_out1['m'], test_out1['m'] = 1, 1
 

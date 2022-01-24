@@ -49,7 +49,7 @@ try:
         epoch = 0
         cprint("[TEST]")
         # Procedure.Test(dataset, Recmodel, epoch, w, world.config['multicore'])
-        Procedure.predict(dataset, data_path[world.dataset], testing=True)
+        Procedure.predict(dataset, data_path[world.dataset], testing='test' in world.dataset)
 finally:
     if world.tensorboard:
         w.close()
