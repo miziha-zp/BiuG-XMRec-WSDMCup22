@@ -105,23 +105,48 @@ Similar to xm-itemCF, we alse add users whose are from source market to purchase
  We calulation the click numbers of every item **in every market** as the feature to represent the popularity of items in different market.
 
 ### learn to rank
- 
+ Using the scoring method above, we can get the scoring of both validation data and test data, then we train a sorting model using validation data. LightGBM, short for Light Gradient Boosting Machine, is a free and open source distributed gradient boosting framework for machine learning originally developed by Microsoft[11].We adapter a LightGBM ranker for the sorting, which significantly improved performance.
+ Follow [10], 7fold cross-validation is applied to get offline score.
 
-an overall benchmark is below.
+An overall table of scores mentioned above is below. Due to space constraints， some scores are omitted. If you want all the score, see [here](#run-from-the-start)
 
 for t1
-| method   | ndcg@10validation | hit@10validation |
-| -------- | ----------------- | ---------------- |
-| lightgcn | 0.698             | 0.806            |
+
+| method             | ndcg@10validation | hit@10validation |
+| ------------------ | ----------------- | ---------------- |
+| lightgbm           | 0.725             | 0.826            |
+| lightgcn           | 0.698             | 0.806            |
+| mf_score           | 0.690             | 0.785            |
+| ultraGCN           | 0.681             | 0.780            |
+| gf-cf              | 0.675             | 0.761            |
+| xm-itemcf-iou-mean | 0.686             | 0.782            |
+| itemcf-iou-mean    | 0.677             | 0.761            |
+
+
 for t2
-|method|ndcg@10validation|hit@10validation|
+
+| method             | ndcg@10validation | hit@10validation |
+| ------------------ | ----------------- | ---------------- |
+| lightgbm           | 0.632             | 0.749            |
+| lightgcn           | 0.607             | 0.721            |
+| mf_score           | 0.597             | 0.701            |
+| ultraGCN           | 0.577             | 0.677            |
+| gf-cf              | 0.556             | 0.650            |
+| xm-itemcf-iou-mean | 0.586             | 0.685            |
+| itemcf-iou-mean    | 0.566             | 0.663             |
+
+for t1|t2
+
+| method             | ndcg@10validation | hit@10validation |
+| ------------------ | ----------------- | ---------------- |
+| lightgbm           | 0.663             | 0.774            |
 
 ### details
 
 #### concat train and train5core
-
+We just concat train and train5core data and remove the duplicate sections as our train data.
 #### add validation data to train for test scoring.
-
+When score for test data, we add add validation groudtruth data to train.
 ## run our code  
 
 ### clone the repository
@@ -144,6 +169,7 @@ set your work home in `run_all.sh`, and then,
 ```bash
 bash run_all.sh 
 ```
+if you want to get scores from every method mentioned above, motify `python xm_lgb.py` in `run_all.sh` to `python xm_lgb.py --offline`, then you will get the scores table.
 your will find the result in `learn2rank/submit1.zip`.
 
 notice: We rebuild our project for simplicity and rerun our project, so the result may be slightly different from the leaderboard, caused by the random factor.
@@ -181,3 +207,8 @@ Thank you to everyone for your efforts。
 [8] Linden et al. Recommendations Item-to-Item Collaborative Filtering
 
 [9] Barken et al. Item2Vec: Neural Item Embedding for Collaborative Filtering
+
+[10] Chang et al. LIBSVM--A Library for Support Vector Machines
+
+[11] Ke et al. LightGBM: A Highly Efficient Gradient Boosting
+Decision Tree
