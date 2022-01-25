@@ -96,7 +96,7 @@ class ItemKNN:
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Simple Baseline')
-    parser.add_argument('--dataset', type=str, default='t1')
+    parser.add_argument('--dataset', type=str, default='t3')
     parser.add_argument('--K', type=int, default=2)
     
     args = parser.parse_args()

@@ -13,12 +13,7 @@ print(">>SEED:", 2020)
 
 
 if __name__ == '__main__':
-    utils.tokenizer('../../input/t1', 't1')
-    utils.tokenizer('../../input/t2', 't2')
-    
-    utils.data_process('../../input/t1', 't1', training=False)
-    utils.data_process('../../input/t2', 't2', training=False)
-
-    utils.data_process('../../input/t1', 't1', training=True)
-    utils.data_process('../../input/t2', 't2', training=True)
+    utils.tokenizer('../../input/t3', 't3')
+    utils.data_process('../../input/t3', 't3', training=False)
+    utils.data_process('../../input/t3', 't3', training=True)
         

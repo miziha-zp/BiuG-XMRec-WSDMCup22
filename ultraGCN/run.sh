@@ -1,4 +1,2 @@
-python solve.py --dir="../input/t1" --config-file="t1.ini" > logs/long.log
-python solve.py --dir="../input/t2" --config-file="t2.ini" >> logs/long.log
-python solve.py --dir="../input/t1" --config-file="t1_testing.ini" >> logs/long.log
-python solve.py --dir="../input/t2" --config-file="t2_testing.ini" >> logs/long.log
+python solve.py --dir="../input/t3" --config-file="t3.ini" > logs/long.log
+python solve.py --dir="../input/t3" --config-file="t3_testing.ini" >> logs/long.log

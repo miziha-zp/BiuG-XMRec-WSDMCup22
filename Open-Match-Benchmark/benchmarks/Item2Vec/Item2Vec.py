@@ -16,7 +16,7 @@ from predictor import item2vec_predict
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Simple Baseline')
-    parser.add_argument('--dataset', type=str, default='t1')
+    parser.add_argument('--dataset', type=str, default='t3')
     parser.add_argument('--topk', type=str, default='[20, 50]')
     parser.add_argument('--window', type=int, default=10)
     parser.add_argument('--emb-dim', type=int, default=16)

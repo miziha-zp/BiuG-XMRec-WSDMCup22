@@ -155,10 +155,9 @@ def main():
     
     args = parser.parse_args()
     print(args)
-    valid_out1, test_out1 = solve(args.t1_dir, args.reload, args.offline)
+    valid_out1, test_out1 = solve(args.t_dir, args.reload, args.offline)
 
     print("valid_out1:", valid_out1.shape)
-    print("valid_out2:", valid_out2.shape)
     
     lgb_valid_data = valid_out1
     lgb_test_data = test_out1
@@ -167,7 +166,7 @@ def main():
     remove_features_list = ['userId', 'itemId', 'score', 'rating'] 
     features_list = [fea for fea in lgb_valid_data.columns if fea not in remove_features_list]
     
-    valid_out, test_out = train_kFold_lgb_ranking(lgb_valid_data, lgb_test_data, features_list, Kfold=7, cross_domain=True)
+    valid_out, test_out = train_kFold_lgb_ranking(lgb_valid_data, lgb_test_data, features_list, Kfold=7, cross_domain=False)
     # valid_out, test_out = train_kFold_lgb_cls(lgb_valid_data, lgb_test_data, features_list, Kfold=7, cross_domain=True)
     
     valid_out = valid_out.loc[:,~valid_out.columns.duplicated()]

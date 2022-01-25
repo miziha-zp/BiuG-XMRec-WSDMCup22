@@ -1,7 +1,7 @@
 import os
 from os.path import join as pjoin
 target_path = 'ItemKNN/data/data'
-for dataset  in ['t1', 't2', 't1_testing', 't2_testing']:
+for dataset  in ['t3', 't3_testing']:
     t_target_path = pjoin(target_path, dataset)
     if not os.path.exists(t_target_path):
         print('create dir:', t_target_path)

@@ -28,11 +28,8 @@ if world.LOAD:
         print(f"{weight_file} not exists, start from beginning")
 Neg_k = 1
 data_path={
-    "t1":'../../input/t1',
-    "t2":'../../input/t2',
-    "t1_testing":'../../input/t2',
-    "t2_testing":'../../input/t2',
-      
+    "t3":'../../input/t3',
+    "t3_testing":'../../input/t3',
 } 
 
 # init tensorboard
