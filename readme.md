@@ -102,7 +102,7 @@ In the section, we introduce benchmark collaborative filtering methods on a sing
 
 ### Bringing in useful information from the source market
 
-To alleviate the problem of sparse data in target markets, we make some attempts.
+To alleviate the problem of sparse data in target markets, we make some attempts. Recent work[12] shows that source market data can help improve the target market recommendation. So
 
 #### xm-itemCF
 We simply add source market data to item similarity calculation, which means that when the users in the source market whose purchase the item are considered. After add source market data some scores are improved Obviously.
@@ -258,4 +258,5 @@ Thank you to everyone for your efforts。
 [10] Chang et al. LIBSVM--A Library for Support Vector Machines
 
 [11] Ke et al. LightGBM: A Highly Efficient Gradient Boosting
-Decision Tree
+Decision Tree.
+[12] Bonab et al. Cross-Market Product Recommendation.

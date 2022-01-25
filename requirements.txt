@@ -14,12 +14,7 @@ seaborn==0.11.1
 sparsesvd==0.2.2
 swifter==1.0.9
 tensorboardX==2.4.1
-tensorflow==2.7.0
-tensorflow_gpu==1.15.0
 termcolor==1.1.0
 toolz==0.11.1
-torch==1.7.1
-torchvision==0.8.2
 tqdm==4.56.0
-cppimport
 pybind11
