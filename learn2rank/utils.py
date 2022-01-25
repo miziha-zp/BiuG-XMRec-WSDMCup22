@@ -76,6 +76,19 @@ def zipDir(dirpath, outFullName):
     zip.close()
  
 import shutil
+
+def save_single(t1_valid, t1_test, save_path='result/temp', remove_oral_file=True):
+    t1_save_path = os.path.join(save_path, 't3')
+    if not os.path.exists(t1_save_path):
+        os.makedirs(t1_save_path)
+    t1_valid = t1_valid[['userId', 'itemId', 'score']]
+    t1_test = t1_test[['userId', 'itemId', 'score']]
+
+    t1_valid.to_csv(os.path.join(t1_save_path, 'valid_pred.tsv'), sep='\t', index=None)
+    t1_test.to_csv(os.path.join(t1_save_path, 'test_pred.tsv'), sep='\t', index=None)
+
+    
+
 def save(t1_valid, t1_test, t2_valid, t2_test, save_path='result/temp', remove_oral_file=True):
     '''
      submission.zip

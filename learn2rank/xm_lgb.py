@@ -148,8 +148,7 @@ def solve(data_dir, reload, offline):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--t1_dir", help="Path to the DATA dir of the kit. Default: ../input/t1", default='../input/t1')
-    parser.add_argument("--t2_dir", help="Path to the DATA dir of the kit. Default: ../input/t2", default='../input/t2')
+    parser.add_argument("--t_dir", help="Path to the DATA dir of the kit. Default: ../input/t3", default='../input/t3')
     parser.add_argument("--reload", help="reload pkl features", action='store_true')
     parser.add_argument("--valid", help="print offline score", action='store_true')
     parser.add_argument("--offline", help="offlinescore for every features", action='store_true')
@@ -157,18 +156,14 @@ def main():
     args = parser.parse_args()
     print(args)
     valid_out1, test_out1 = solve(args.t1_dir, args.reload, args.offline)
-    valid_out2, test_out2 = solve(args.t2_dir, args.reload, args.offline)
-
-    valid_out2['m'], test_out2['m'] = 2, 2
-    valid_out1['m'], test_out1['m'] = 1, 1
 
     print("valid_out1:", valid_out1.shape)
     print("valid_out2:", valid_out2.shape)
     
-    lgb_valid_data = pd.concat([valid_out1, valid_out2])
+    lgb_valid_data = valid_out1
+    lgb_test_data = test_out1
 
     print(lgb_valid_data.shape)
-    lgb_test_data = pd.concat([test_out1, test_out2])
     remove_features_list = ['userId', 'itemId', 'score', 'rating'] 
     features_list = [fea for fea in lgb_valid_data.columns if fea not in remove_features_list]
     
@@ -178,10 +173,9 @@ def main():
     valid_out = valid_out.loc[:,~valid_out.columns.duplicated()]
     test_out = test_out.loc[:,~test_out.columns.duplicated()]
     
-    valid_out1, valid_out2 = valid_out[valid_out['m'] == 1], valid_out[valid_out['m'] == 2]
-    test_out1,  test_out2  = test_out[test_out['m'] == 1],  test_out[test_out['m'] == 2]
     save_path = f'../result/lgb_ranking/'
-    save(valid_out1, test_out1, valid_out2, test_out2, save_path=save_path)
+
+    save_single(valid_out1, test_out1, save_path=save_path)
     print('saved to ', save_path)
 if __name__ == '__main__':
     main()
