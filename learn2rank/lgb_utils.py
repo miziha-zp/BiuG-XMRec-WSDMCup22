@@ -34,6 +34,10 @@ def train_kFold_lgb_cls(lgb_valid_data, lgb_test_data, featureslist, cross_domai
 
     lgb_valid_data['itemId'] = lgb_valid_data['itemId'].astype('category')
     lgb_test_data['itemId'] = lgb_test_data['itemId'].astype('category')
+    zero_features, feature_importances = identify_zero_importance_features(lgb_valid_data[featureslist], lgb_valid_data['score'], 2)
+    print(zero_features)
+    print(feature_importances)
+    featureslist = [fea for fea in featureslist if fea not in zero_features]
     
     print(featureslist)
     params = {
@@ -222,7 +226,7 @@ def identify_zero_importance_features(train, train_labels, iterations=5):
     feature_importances = pd.DataFrame({'feature': list(train.columns), 'importance': feature_importances}).sort_values('importance', ascending = False)
     
     # Find the features with zero importance
-    zero_features = list(feature_importances[feature_importances['importance'] <= 10.0]['feature'])
+    zero_features = list(feature_importances[feature_importances['importance'] <= 8.0]['feature'])
     print('\nThere are %d features with 0.0 importance' % len(zero_features))
     
     return zero_features, feature_importances
@@ -247,12 +251,12 @@ def train_kFold_lgb_ranking(lgb_valid_data, lgb_test_data, featureslist, cross_d
         # 'objective' : 'binary',
         'metric': ['ndcg','auc'],
         "eval_at":[10],
-        'num_leaves':10,
-        'lambda_l1': 1,
+        'num_leaves':24,
+        'lambda_l1': 0.1,
         'lambda_l2': 0.5,
         # 'max_depth': -1,
         'learning_rate': 0.037,
-        'min_child_samples':10,
+        # 'min_child_samples':10,
         'feature_fraction': 0.9,
         'bagging_fraction': 0.9,
         'random_state':42,

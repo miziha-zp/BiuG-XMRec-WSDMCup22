@@ -10,7 +10,7 @@ from itemcf import *
 from utils import *
 from swing import *
 from itemcf_cross import get_crossitemCF_score
-from lgb_utils import train_kFold_lgb_ranking, train_kFold_catboost
+from lgb_utils import train_kFold_lgb_ranking, train_kFold_catboost, train_kFold_lgb_cls
 import joblib
 from validate_submission import *
 from xm_cf.rank_score_utils import *
@@ -97,8 +97,8 @@ def solve(data_dir, reload, offline):
         joblib.dump(lgb_test_data, test_pkl_path)
     else:
         a = 2
-        # lgb_valid_data = joblib.load(valid_pkl_path)
-        # lgb_test_data = joblib.load(test_pkl_path)
+        lgb_valid_data = joblib.load(valid_pkl_path)
+        lgb_test_data = joblib.load(test_pkl_path)
     # del lgb_test_data['u2iiou_length'], lgb_valid_data['u2iiou_length']
     # print(lgb_valid_data['i2ucosine_max'].head(500))
     # merge train train5core stats features
@@ -173,6 +173,7 @@ def main():
     features_list = [fea for fea in lgb_valid_data.columns if fea not in remove_features_list]
     
     valid_out, test_out = train_kFold_lgb_ranking(lgb_valid_data, lgb_test_data, features_list, Kfold=7, cross_domain=True)
+    # valid_out, test_out = train_kFold_lgb_cls(lgb_valid_data, lgb_test_data, features_list, Kfold=7, cross_domain=True)
     
     valid_out = valid_out.loc[:,~valid_out.columns.duplicated()]
     test_out = test_out.loc[:,~test_out.columns.duplicated()]
