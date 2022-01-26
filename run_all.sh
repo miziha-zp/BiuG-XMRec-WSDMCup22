@@ -3,6 +3,7 @@ RANKPATH=$CODEHOME/learn2rank/
 LGBPATH=$CODEHOME/LightGCN-PyTorch-master/code
 GFCFPATH=$CODEHOME/GFCF/code/
 ultraGCNPATH=$CODEHOME/ultraGCN
+OpenBenchmarkPATH=$CODEHOME/Open-Match-Benchmark/benchmarks
 EASE_RPATH=$CODEHOME/Open-Match-Benchmark/benchmarks/EASE_r
 ItemKNNPATH=$CODEHOME/Open-Match-Benchmark/benchmarks/ItemKNN
 SLIMPATH=$CODEHOME/Open-Match-Benchmark/benchmarks/SLIM
@@ -18,6 +19,8 @@ bash run.sh
 cd $ultraGCNPATH
 bash run.sh
 pwd
+cd OpenBenchmarkPATH
+python create_dataset.py
 cd $EASE_RPATH
 pwd
 bash run.sh

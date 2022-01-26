@@ -22,7 +22,7 @@ if __name__ == "__main__":
     parser.add_argument('--emb-dim', type=int, default=16)
     parser.add_argument('--n_negs', type=int, default=20)
     parser.add_argument('--batch_size', type=int, default=2048)
-    parser.add_argument('--epochs', type=int, default=20)
+    parser.add_argument('--epochs', type=int, default=200)
     parser.add_argument('--gpu_id', type=int, default=0)
     args = parser.parse_args()
 

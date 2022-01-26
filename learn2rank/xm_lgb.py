@@ -15,7 +15,7 @@ import joblib
 from validate_submission import *
 from xm_cf.rank_score_utils import *
 source_market = {
-    "t1":"s1,s2,s3,all",
+    "t3":"s1,s2,s3,all",
     "t2":"s1,s2,s3,all"
     # "t1":"all",
     # "t2":"all"
@@ -24,8 +24,8 @@ source_market = {
 source_marketsss = {
     # 't1': ['t1-t2-s1-s2-s3', 's1-t1', 's2-t1', 's3-t1'],
     # 't2': ['t1-t2-s1-s2-s3', 's1-t2', 's2-t2', 's3-t2'],
-    't1':['t1-t2-s1-s2-s3'],
-    't2':['t1-t2-s1-s2-s3']
+    't3':['t3-t1-t2-s1-s2-s3'],
+    't2':['t3-t1-t2-s1-s2-s3']
 }
 np.random.seed(2022)
 def get_offline_score(lgb_valid_data, data_dir, market_name, save_path='tmp'):
@@ -155,12 +155,12 @@ def main():
     
     args = parser.parse_args()
     print(args)
-    valid_out1, test_out1 = solve(args.t_dir, args.reload, args.offline)
+    valid_out, test_out = solve(args.t_dir, args.reload, args.offline)
 
-    print("valid_out1:", valid_out1.shape)
+    print("valid_out:", valid_out.shape)
     
-    lgb_valid_data = valid_out1
-    lgb_test_data = test_out1
+    lgb_valid_data = valid_out
+    lgb_test_data = test_out
 
     print(lgb_valid_data.shape)
     remove_features_list = ['userId', 'itemId', 'score', 'rating'] 
@@ -174,7 +174,7 @@ def main():
     
     save_path = f'../result/lgb_ranking/'
 
-    save_single(valid_out1, test_out1, save_path=save_path)
+    save_single(valid_out, test_out, save_path=save_path)
     print('saved to ', save_path)
 if __name__ == '__main__':
     main()
