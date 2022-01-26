@@ -18,6 +18,8 @@ bash run.sh
 cd $ultraGCNPATH
 bash run.sh
 pwd
+cd $CODEHOME/Open-Match-Benchmark/benchmarks/
+python create_dataset.py
 cd $EASE_RPATH
 pwd
 bash run.sh
