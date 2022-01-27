@@ -19,7 +19,8 @@ bash run.sh
 cd $ultraGCNPATH
 bash run.sh
 pwd
-cd OpenBenchmarkPATH
+cd $OpenBenchmarkPATH
+pwd
 python create_dataset.py
 cd $EASE_RPATH
 pwd
