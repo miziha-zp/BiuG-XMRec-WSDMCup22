@@ -5,7 +5,7 @@ import utils
 from pprint import pprint
 
 if world.dataset in world.all_dataset:
-    dataset = dataloader.Loader(path="/home/lichangyv/miziha/LightGCN-PyTorch-master/data/"+world.dataset)
+    dataset = dataloader.Loader(path="../../LightGCN-PyTorch-master/data/"+world.dataset)
 elif world.dataset == 'lastfm':
     dataset = dataloader.LastFM()
 
