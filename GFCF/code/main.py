@@ -30,7 +30,7 @@ Neg_k = 1
 data_path={
     "t1":'../../input/t1',
     "t2":'../../input/t2',
-    "t1_testing":'../../input/t2',
+    "t1_testing":'../../input/t1',
     "t2_testing":'../../input/t2',
       
 } 
