@@ -126,8 +126,8 @@ def solve(data_dir, reload, offline):
     lgb_valid_data, lgb_test_data = load_lgbide(data_dir, lgb_valid_data, lgb_test_data)
     # gfcf
     lgb_valid_data, lgb_test_data = load_gfcf(data_dir, lgb_valid_data, lgb_test_data)
-    # lgb_valid_data['sum_mf_lgcn'] = 0.7 * lgb_valid_data['lgcn_score_score'] + 0.3 * lgb_valid_data['mf_score_score']
-    # lgb_test_data['sum_mf_lgcn'] = 0.7 * lgb_test_data['lgcn_score_score'] + 0.3 * lgb_test_data['mf_score_score']
+    lgb_valid_data['sum_mf_lgcn'] = 0.7 * lgb_valid_data['lgcn_score_score'] + 0.3 * lgb_valid_data['mf_score_score']
+    lgb_test_data['sum_mf_lgcn'] = 0.7 * lgb_test_data['lgcn_score_score'] + 0.3 * lgb_test_data['mf_score_score']
     
     # for fea in ["u2iiou_max", "itemKNN2_scores", "concat_s1_u2iiou_max"]:
     #     lgb_valid_data[f'sum_lgcn_{fea}'] = 0.7 * lgb_valid_data['lgcn_score_score']+ 0.3 * lgb_valid_data[fea]
@@ -136,7 +136,7 @@ def solve(data_dir, reload, offline):
     # norm features
     # lgb_valid_data, lgb_test_data = norm_feature(lgb_valid_data, lgb_test_data)
     # features from valid_table 6556->0.6486
-    # lgb_valid_data, lgb_test_data = get_feature_here(lgb_valid_data, lgb_test_data)
+    lgb_valid_data, lgb_test_data = get_feature_here(lgb_valid_data, lgb_test_data)
     if offline:
         get_offline_score(lgb_valid_data, data_dir, market_name, '')
 
