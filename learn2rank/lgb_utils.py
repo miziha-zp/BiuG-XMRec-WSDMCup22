@@ -226,7 +226,7 @@ def identify_zero_importance_features(train, train_labels, iterations=5):
     feature_importances = pd.DataFrame({'feature': list(train.columns), 'importance': feature_importances}).sort_values('importance', ascending = False)
     
     # Find the features with zero importance
-    zero_features = list(feature_importances[feature_importances['importance'] <= 8.0]['feature'])
+    zero_features = list(feature_importances[feature_importances['importance'] <= 2.0]['feature'])
     print('\nThere are %d features with 0.0 importance' % len(zero_features))
     
     return zero_features, feature_importances
