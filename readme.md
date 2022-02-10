@@ -168,6 +168,9 @@ You should use Python 3.7.9, cudatoolkit 11.0.3 and PyTorch 1.7.1. Then run the 
 ```bash
 # If you have not install torch, you should run this:
 conda install pytorch==1.7.1 torchvision==0.8.2 torchaudio==0.7.2 cudatoolkit=11.0 -c pytorch
+# this two package has some problem, so you should install it manually with conda
+conda install gensim==3.4.0 -y
+conda install numpy==1.19.2 -y
 # Then install the requirement packages
 pip install -r requirements.txt
 ```
