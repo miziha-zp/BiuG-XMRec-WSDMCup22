@@ -16,7 +16,7 @@ import multiprocessing
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 args = parse_args()
 
-ROOT_PATH = "/home/lichangyv/miziha/GFCF"
+ROOT_PATH = "../../GFCF"
 CODE_PATH = join(ROOT_PATH, 'code')
 DATA_PATH = join(ROOT_PATH, 'data')
 BOARD_PATH = join(CODE_PATH, 'runs')
