@@ -35,6 +35,7 @@
 
 
 ## Introduction
+our report is available [here](http://www.wsdm-conference.org/2022/wp-content/uploads/2022/02/Task3_BiuG_3rd.pdf)
 >
 E-commerce companies often operate across markets; for instance, Amazon has expanded their operations and sales to 18 markets (i.e. countries) around the globe. The cross-market recommendation concerns the problem of recommending relevant products to users in a target market (e.g., a resource-scarce market) by leveraging data from similar high-resource markets, e.g. using data from the U.S. market to improve recommendations in a target market. The key challenge, however, is that data, such as user interaction data with products (clicks, purchases, reviews), convey certain biases of the individual markets. Therefore, the algorithms trained on a source market are not necessarily effective in a different target market.
 Despite its significance, small progress has been made in cross-market recommendation, mainly due to a lack of experimental data for the researchers. In this WSDM Cup challenge, we provide user purchase and rating data on various markets, enriched with review data in different languages, with a considerable number of shared item subsets. The goal is to improve individual recommendation systems in these target markets by leveraging data from similar auxiliary markets.
